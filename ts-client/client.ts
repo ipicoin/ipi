@@ -31,7 +31,7 @@ export class IgniteClient extends EventEmitter {
 
     if (Array.isArray(plugin)) {
       type Extension = UnionToIntersection<Return<T>['module']>
-      return AugmentedClient as typeof AugmentedClient & Constructor<Extension>;  
+      return AugmentedClient as typeof AugmentedClient & Constructor<Extension>;
     }
 
     type Extension = Return<T>['module']
@@ -60,9 +60,9 @@ export class IgniteClient extends EventEmitter {
       if (this.registry) {
         this.registry = this.registry.concat(pluginInstance.registry)
       }
-		});		
+		});
   }
-  async useSigner(signer: OfflineSigner) {    
+  async useSigner(signer: OfflineSigner) {
       this.signer = signer;
       this.emit("signer-changed", this.signer);
   }
@@ -86,7 +86,7 @@ export class IgniteClient extends EventEmitter {
       const staking = await (await stakingqc.queryParams()).data;
       const bankqc = bankQueryClient({ addr: this.env.apiURL });
       const tokens = await (await bankqc.queryTotalSupply()).data;
-      const addrPrefix = this.env.prefix ?? "cosmos";
+      const addrPrefix = this.env.prefix ?? "ipi";
       const rpc = this.env.rpcURL;
       const rest = this.env.apiURL;
       let stakeCurrency = {
